@@ -2,8 +2,11 @@ from django.db import models
 
 class Sala_de_reuniao(models.Model):
     nome = models.CharField(max_length=32, null=False)
-    def reservar(titulo, self, inicio_reserva, fim_reserva):
-        Agendamento(titulo, self, inicio_reserva, fim_reserva).save()
+    #kdef reservar(titulo, self, inicio_reserva, fim_reserva):
+     #   Agendamento(titulo, self, inicio_reserva, fim_reserva).save()
+
+    def __str__(self):
+        return self.nome
 
 
 class Agendamento(models.Model):
@@ -11,6 +14,9 @@ class Agendamento(models.Model):
     sala = models.ForeignKey(Sala_de_reuniao, on_delete=models.CASCADE , related_name='agendamentos')
     inicio_reserva = models.DateTimeField()
     fim_reserva = models.DateTimeField()
+
+    def __str__(self):
+        return self.titulo
 
 
 
