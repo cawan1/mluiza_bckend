@@ -11,13 +11,13 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.AddField(
-            model_name='sala_de_reuniao',
+            model_name='sala',
             name='id',
             field=models.AutoField(auto_created=True, default=1, primary_key=True, serialize=False, verbose_name='ID'),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='sala_de_reuniao',
+            model_name='sala',
             name='nome',
             field=models.CharField(max_length=32),
         ),

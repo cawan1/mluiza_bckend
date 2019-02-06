@@ -2,61 +2,61 @@ from django.test import TestCase
 from django.urls import reverse 
 from rest_framework import status 
 from rest_framework.test import APITestCase
-from booking.models import Sala_de_reuniao, Agendamento
+from booking.models import Sala, Agendamento
 from rest_framework.test import APIRequestFactory
 from datetime import datetime
 
 
-class Sala_de_reuniaoAPITestCase(APITestCase):
+class SalaAPITestCase(APITestCase):
 
     def test_create_room(self):
         """
         Teste criação de uma sala
         """
-        url = reverse('sala_de_reuniao-list')
+        url = reverse('sala-list')
         data = {'nome' : 'Verde'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Sala_de_reuniao.objects.count(), 1)
-        self.assertEqual(Sala_de_reuniao.objects.get().nome, 'Verde')
-        self.assertEqual(Sala_de_reuniao.objects.get().id, 1)
+        self.assertEqual(Sala.objects.count(), 1)
+        self.assertEqual(Sala.objects.get().nome, 'Verde')
+        self.assertEqual(Sala.objects.get().id, 1)
 
     def test_update_room(self):
         """
         Teste alteracao de uma sala
         """
-        url = reverse('sala_de_reuniao-list')
+        url = reverse('sala-list')
         data = {'nome' : 'Amarela'}
         response = self.client.post(url, data, format='json')
-        self.assertEqual(Sala_de_reuniao.objects.get().nome, 'Amarela')
-        self.assertEqual(Sala_de_reuniao.objects.count(), 1)
+        self.assertEqual(Sala.objects.get().nome, 'Amarela')
+        self.assertEqual(Sala.objects.count(), 1)
         response = self.client.get('/api/salas/1/')
         self.assertEqual(response.data, {'nome' : 'Amarela'})
         url = '/api/salas/1/'
         data_update = {'nome' : 'Vermelha'}
         response = self.client.put(url, data_update, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(Sala_de_reuniao.objects.get().nome, 'Vermelha')
-        self.assertEqual(Sala_de_reuniao.objects.count(), 1)
+        self.assertEqual(Sala.objects.get().nome, 'Vermelha')
+        self.assertEqual(Sala.objects.count(), 1)
 
     def test_delete_room(self):
         """
         Teste criação e delete de uma sala
         """
-        url = reverse('sala_de_reuniao-list')
+        url = reverse('sala-list')
         data = {'nome' : 'Verde'}
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(Sala_de_reuniao.objects.count(), 1)
-        self.assertEqual(Sala_de_reuniao.objects.get().nome, 'Verde')
-        self.assertEqual(Sala_de_reuniao.objects.get().id, 1)
+        self.assertEqual(Sala.objects.count(), 1)
+        self.assertEqual(Sala.objects.get().nome, 'Verde')
+        self.assertEqual(Sala.objects.get().id, 1)
         url = '/api/salas/1/'
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
 
 class AgendamentoAPITestCase(APITestCase):
     def setUp(self):
-        sala = Sala_de_reuniao(nome="Verde")
+        sala = Sala(nome="Verde")
         sala.save()
 
     def test_create_booking(self):

@@ -112,8 +112,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-#TIME_ZONE = 'UTC'
-TIME_ZONE = 'GMT-2'
+TIME_ZONE = 'UTC'
+#TIME_ZONE = 'GMT-2'
 
 USE_I18N = True
 
@@ -124,18 +124,23 @@ USE_TZ = True
 
 LOGGING = {
         'version': 1,
-        'disable_existing_loggers': False,
+        'disable_existing_loggers': True,
         'handlers': {
+            'console': {
+                'class': 'logging.StreamHandler',
+                },
             'file': {
-                'level': 'DEBUG',
+                'level': 'INFO',
                 'class': 'logging.FileHandler',
-                'filename': '/logs/log_log.log',
+                'filename': 'meeting_room.log',
                 },
             },
         'loggers': {
             'django': {
-                'handlers': ['file'],
-                'level': 'DEBUG',
+                #'handlers': ['file'],
+                'handlers': ['console'],
+                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+                #'level': 'INFO',
                 'propagate': True,
                 },
             },

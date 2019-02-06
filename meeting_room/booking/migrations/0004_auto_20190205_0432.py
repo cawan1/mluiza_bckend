@@ -11,11 +11,11 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.RemoveField(
-            model_name='sala_de_reuniao',
+            model_name='sala',
             name='id',
         ),
         migrations.AlterField(
-            model_name='sala_de_reuniao',
+            model_name='sala',
             name='nome',
             field=models.CharField(max_length=32, primary_key=True, serialize=False),
         ),

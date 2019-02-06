@@ -9,20 +9,20 @@ from rest_framework import (
 
 from booking.models import (
         Agendamento,
-        Sala_de_reuniao
+        Sala
         )
 
 from booking.serializers import (
-        Sala_de_reuniaoSerializer,
+        SalaSerializer,
         AgendamentoSerializer,
         )
 
 # ViewSets define the view behavior.
-class Sala_de_reuniaoViewSet(viewsets.ModelViewSet):
-    queryset = Sala_de_reuniao.objects.all()
+class SalaViewSet(viewsets.ModelViewSet):
+    queryset = Sala.objects.all()
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['nome']
-    serializer_class = Sala_de_reuniaoSerializer
+    serializer_class = SalaSerializer
 
 class AgendamentoViewSet(viewsets.ModelViewSet):
     queryset = Agendamento.objects.all()
