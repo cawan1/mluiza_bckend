@@ -49,4 +49,4 @@ class AgendamentoSerializer(serializers.ModelSerializer):
 class SalaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Sala
-        fields = ['nome']
+        fields = ['id' , 'nome']

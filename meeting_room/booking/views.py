@@ -21,7 +21,7 @@ from booking.serializers import (
 class SalaViewSet(viewsets.ModelViewSet):
     queryset = Sala.objects.all()
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
-    search_fields = ['nome']
+    search_fields = ['id' , 'nome']
     serializer_class = SalaSerializer
 
 class AgendamentoViewSet(viewsets.ModelViewSet):

@@ -121,31 +121,59 @@ USE_L10N = True
 
 USE_TZ = True
 
+import logging.config
+from django.utils.log import DEFAULT_LOGGING
+logging.config.dictConfig({
+    # ...
+    'version': 1,
+    'formatters': {
+        # ...
+        'django.server': DEFAULT_LOGGING['formatters']['django.server'],
+        },
+    'handlers': {
+        # ...
+        'django.server': DEFAULT_LOGGING['handlers']['django.server'],
+        },
+    'loggers': {
+        # ...
+        'django.server': DEFAULT_LOGGING['loggers']['django.server'],
+        },
+    })
 
-LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': True,
-        'handlers': {
-            'console': {
-                'class': 'logging.StreamHandler',
-                },
-            'file': {
-                'level': 'INFO',
-                'class': 'logging.FileHandler',
-                'filename': 'meeting_room.log',
-                },
-            },
-        'loggers': {
-            'django': {
-                #'handlers': ['file'],
-                'handlers': ['console'],
-                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-                #'level': 'INFO',
-                'propagate': True,
-                },
-            },
-        }
-
+#LOGGING = {
+#        'version': 1,
+#        'disable_existing_loggers': True,
+#        'formatters': {
+#            'verbose': {
+#                'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#                'style': '{',
+#                },
+#            'simple': {
+#                'format': '{levelname} {message}',
+#                'style': '{',
+#                },
+#                                    },
+#        'handlers': {
+#            'console': {
+#                'class': 'logging.StreamHandler',
+#                },
+#        #    'file': {
+#        #        'level': 'INFO',
+#        #        'class': 'logging.FileHandler',
+#        #        'filename': 'meeting_room.log',
+#        #        },
+#            },
+#        'loggers': {
+#            'django': {
+#                #'handlers': ['file'],
+#                'handlers': ['console'],
+#                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#                #'level': 'INFO',
+#                'propagate': True,
+#                },
+#            },
+#        }
+#
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 

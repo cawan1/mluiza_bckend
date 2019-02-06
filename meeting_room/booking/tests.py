@@ -31,7 +31,8 @@ class SalaAPITestCase(APITestCase):
         self.assertEqual(Sala.objects.get().nome, 'Amarela')
         self.assertEqual(Sala.objects.count(), 1)
         response = self.client.get('/api/salas/1/')
-        self.assertEqual(response.data, {'nome' : 'Amarela'})
+        #self.assertEqual(response.data, {'nome' : 'Amarela'})
+        self.assertEqual(response.data, {'id': 1, 'nome': 'Amarela'})
         url = '/api/salas/1/'
         data_update = {'nome' : 'Vermelha'}
         response = self.client.put(url, data_update, format='json')
