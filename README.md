@@ -13,7 +13,7 @@ Infos:
  
  Passos para execução do Projeto:
   
-  1. docker pull cawanporto/django-rest-framework
+  1. ```docker pull cawanporto/django-rest-framework```
   2. git clone https://github.com/cawan1/mluiza_bckend.git
   3. cd mluiza_bckend/meeting_room
   4. docker run -d --name="cp_magalu" -p 80:80 -v `pwd`:/app cawanporto/django-rest-framework runserver 0.0.0.0:80
@@ -24,6 +24,8 @@ Infos:
   
   
   Listar, Criar, Editar, Excluir salas:
+  
+  
   GET /api/salas/
   POST /api/salas/
   PUT /api/salas/{id}
