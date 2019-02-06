@@ -45,7 +45,7 @@
     
   #### Listar, Criar, Editar, Excluir *Agendamentos*:
   
-  GET /api/agendamentos/
+  GET /api/agendamentos/ 
   
   POST /api/agendamentos/
   
@@ -72,6 +72,15 @@
       }' \
    http://localhost/api/agendamentos
 
+#### Filtrar Agendamentos:
+    GET /api/agendamentos/?search={nome_da_sala} 
+         - Agendamentos da sala com nome = {nome_da_sala}
+    GET /api/agendamentos/?search={nome_da_sala}&ordering=inicio_reserva
+         - Agendamentos da sala com nome = {nome_da_sala} ordenados por inicio_reserva
+    GET /api/agendamentos/?search=2019-02-06
+         - Agendamentos do dia 06/02/2019
+    GET /api/agendamentos/?ordering=inicio_reserva
+         - Agendamentos ordenados por inicio_reserva
 
 #### Testes:
 
