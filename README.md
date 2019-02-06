@@ -5,7 +5,7 @@ Desafio Magalu Backend (https://99prod.s3.amazonaws.com/uploads/document/file/65
 - Criar uma API Rest para gerenciamento de salas de reunião.
 
 Infos:
- - Utilizado Python, Django, Djangorestframework, Docker
+ - Utilizado Python, Django, Djangorestframework, Docker(requerimento para o projeto)
  - Dados persistidos em banco de dados local relacional sqlite3
  - Repositoro para Pull Request https://github.com/cawan1/mluiza_bckend
  
