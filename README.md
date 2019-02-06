@@ -21,7 +21,7 @@
   5. ```docker exec -it cp_magalu python manage.py makemigrations```
   6. ```docker exec -it cp_magalu python manage.py migrate```
   7. ```curl http://localhost/api/``` - Possivel Acessar API via Browser
-  8. ```docker exec -it cp_magalu python manage.py test booking```
+
   
   
   #### Listar, Criar, Editar, Excluir *Salas*:
@@ -71,3 +71,13 @@
     "fim_reserva": "2019-03-02T02:00:00" \
       }' \
    http://localhost/api/agendamentos
+
+
+#### Testes:
+
+  ```docker exec -it cp_magalu python manage.py test booking```
+  
+  
+#### Logs:
+   ```docker logs cp_magalu```
+   
