@@ -24,7 +24,7 @@
   8. ```docker exec -it cp_magalu python manage.py test booking```
   
   
-  Listar, Criar, Editar, Excluir salas:
+  #### Listar, Criar, Editar, Excluir *Salas*:
   
   GET /api/salas/
   
@@ -40,10 +40,10 @@
   }
   ```
   
-  Exemplo: 
+  ##### Exemplo: 
   curl -H "Content-Type: application/json" -X POST -d '{"nome" : "Sala01"}' http://localhost/api/salas
     
-  Listar, Criar, Editar, Excluir Agendamentos:
+  #### Listar, Criar, Editar, Excluir *Agendamentos*:
   
   GET /api/agendamentos/
   
@@ -61,3 +61,13 @@
     "fim_reserva": "2019-03-02T02:00:00"
    }
    ```
+   
+   ##### Exemplo: 
+  curl -H "Content-Type: application/json" -X POST -d \
+   ' { \
+    "titulo": "Reuniao_1", \
+    "sala": 1, \
+    "inicio_reserva": "2019-03-02T01:00:00", \
+    "fim_reserva": "2019-03-02T02:00:00" \
+      }' \
+   http://localhost/api/agendamentos
