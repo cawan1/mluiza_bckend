@@ -16,15 +16,16 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
-from booking.views import AgendamentoViewSet, Sala_de_reuniaoViewSet
+#from booking.views import AgendamentoViewSet, Sala_de_reuniaoViewSet
 
-router = routers.DefaultRouter()
-router.register(r'agendamentos', AgendamentoViewSet)
-router.register(r'salas', Sala_de_reuniaoViewSet)
+#router = routers.DefaultRouter()
+#router.register(r'agendamentos', AgendamentoViewSet)
+#router.register(r'salas', Sala_de_reuniaoViewSet)
 
 
 urlpatterns = [
-        url(r'^', include(router.urls)),
+        url(r'^api/', include('booking.urls')),
         url(r'^admin/', admin.site.urls),
-        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-        ]
+        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+#        url(r'^salas/(?P<pk>\d+)/$', Sala_de_reuniaoViewSet.as_view(), name='post_sala')
+]
