@@ -2,7 +2,7 @@ from django.conf.urls import url, include
 from rest_framework import serializers
 from booking.models import Agendamento, Sala 
 from datetime import datetime
-import pytz
+#import pytz
 import logging
 
 logger = logging.getLogger(__name__)
@@ -37,9 +37,10 @@ class AgendamentoSerializer(serializers.ModelSerializer):
 
 
         now = datetime.now()
-        utc=pytz.UTC
+        #utc=pytz.UTC
 
-        if data['inicio_reserva'] < utc.localize(now) or data['fim_reserva'] < utc.localize(now):
+        #if data['inicio_reserva'] < utc.localize(now) or data['fim_reserva'] < utc.localize(now):
+        if data['inicio_reserva'] < now or data['fim_reserva'] < now :
             logger.error("Nao e possivel agendar no passado, o que passou, passou")
             raise serializers.ValidationError("Nao e possivel agendar no passado, o que passou, passou")
 

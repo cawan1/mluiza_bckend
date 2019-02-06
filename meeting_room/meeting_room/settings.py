@@ -25,7 +25,7 @@ SECRET_KEY = '(sdy@^9u94vv4zx#%p$ga8_8gzi$s#@fa$cwfmibulfh1w+nlf'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.99.100']
 
 
 # Application definition
@@ -112,14 +112,16 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 #TIME_ZONE = 'GMT-2'
 
 USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+#USE_TZ = True
+USE_TZ = False
 
 import logging.config
 from django.utils.log import DEFAULT_LOGGING
@@ -140,41 +142,5 @@ logging.config.dictConfig({
         },
     })
 
-#LOGGING = {
-#        'version': 1,
-#        'disable_existing_loggers': True,
-#        'formatters': {
-#            'verbose': {
-#                'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-#                'style': '{',
-#                },
-#            'simple': {
-#                'format': '{levelname} {message}',
-#                'style': '{',
-#                },
-#                                    },
-#        'handlers': {
-#            'console': {
-#                'class': 'logging.StreamHandler',
-#                },
-#        #    'file': {
-#        #        'level': 'INFO',
-#        #        'class': 'logging.FileHandler',
-#        #        'filename': 'meeting_room.log',
-#        #        },
-#            },
-#        'loggers': {
-#            'django': {
-#                #'handlers': ['file'],
-#                'handlers': ['console'],
-#                'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
-#                #'level': 'INFO',
-#                'propagate': True,
-#                },
-#            },
-#        }
-#
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'

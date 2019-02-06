@@ -26,6 +26,6 @@ from rest_framework import routers
 urlpatterns = [
         url(r'^api/', include('booking.urls')),
         url(r'^admin/', admin.site.urls),
-        url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+        #url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 #        url(r'^salas/(?P<pk>\d+)/$', SalaViewSet.as_view(), name='post_sala')
 ]

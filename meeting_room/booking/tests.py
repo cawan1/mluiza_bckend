@@ -4,7 +4,7 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 from booking.models import Sala, Agendamento
 from rest_framework.test import APIRequestFactory
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class SalaAPITestCase(APITestCase):
@@ -68,8 +68,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_1",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:00:00Z",
-                "fim_reserva": "2019-02-10T01:00:00Z"
+                "inicio_reserva": "2019-02-10 00:00",
+                "fim_reserva": "2019-02-10 01:00"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -84,8 +84,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_deOntem",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:00:00",
-                "fim_reserva": "2019-02-10T01:00:00"
+                "inicio_reserva": "2019-02-10 00:00:00",
+                "fim_reserva": "2019-02-10 01:00:00"
                 }
         response = self.client.post(url, data, format='json')
         response = self.client.get('/api/agendamentos/1/')
@@ -93,12 +93,13 @@ class AgendamentoAPITestCase(APITestCase):
         url = '/api/agendamentos/1/'
         data_update = {"titulo": "Reuniao_deOntem",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T02:30:00",
-                "fim_reserva": "2019-02-10T03:00:00"
+                "inicio_reserva": "2019-02-10 02:30:00",
+                "fim_reserva": "2019-02-10 03:00:00"
                 }
         response = self.client.put(url, data_update, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(str(Agendamento.objects.get().inicio_reserva), str(datetime(2019, 2, 10, 2, 30)) + '+00:00')
+        self.assertEqual(Agendamento.objects.get().inicio_reserva, datetime(2019, 2, 10, 2, 30))
+        #self.assertEqual(str(Agendamento.objects.get().inicio_reserva), str(datetime(2019, 2, 10, 2, 30)) + '+00:00')
         self.assertEqual(Agendamento.objects.count(), 1)
 
 
@@ -109,8 +110,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_1",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:00:00Z",
-                "fim_reserva": "2019-02-10T01:00:00Z"
+                "inicio_reserva": "2019-02-10 00:00",
+                "fim_reserva": "2019-02-10 01:00"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -129,8 +130,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_1",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:00:00Z",
-                "fim_reserva": "2019-02-10T01:00:00Z"
+                "inicio_reserva": "2019-02-10 00:00",
+                "fim_reserva": "2019-02-10 01:00"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -141,8 +142,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_1",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:00:00Z",
-                "fim_reserva": "2019-02-10T01:00:00Z"
+                "inicio_reserva": "2019-02-10 00:00",
+                "fim_reserva": "2019-02-10 01:00"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -157,8 +158,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_1",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:00:00Z",
-                "fim_reserva": "2019-02-10T01:00:00Z"
+                "inicio_reserva": "2019-02-10 00:00",
+                "fim_reserva": "2019-02-10 01:00"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
@@ -169,8 +170,8 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_2",
                 "sala": 1,
-                "inicio_reserva": "2019-02-10T00:30:00Z",
-                "fim_reserva": "2019-02-10T01:30:00Z"
+                "inicio_reserva": "2019-02-10 00:30",
+                "fim_reserva": "2019-02-10 01:30"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
@@ -186,9 +187,10 @@ class AgendamentoAPITestCase(APITestCase):
         url = reverse('agendamento-list')
         data = {"titulo": "Reuniao_1",
                 "sala": 1,
-                "inicio_reserva": "2018-02-10T00:00:00Z",
-                "fim_reserva": "2018-02-10T01:00:00Z"
+                "inicio_reserva": "2018-02-10 00:00",
+                "fim_reserva": "2018-02-10 01:00"
                 }
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertEqual(Agendamento.objects.count(), 0)
+
